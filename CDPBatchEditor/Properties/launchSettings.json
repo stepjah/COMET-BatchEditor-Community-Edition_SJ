@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CDPBatchEditor": {
+      "commandName": "Project",
+      "commandLineArgs": "-s http://localhost:5000 -u admin -p pass --report -m LOFT"
+    }
+  }
+}
