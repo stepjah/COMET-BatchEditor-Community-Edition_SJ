@@ -8,7 +8,7 @@
     <RootNamespace>CDPBatchEditor</RootNamespace>
     <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Kamil Wojnowski</Authors>
     <Company>RHEA System S.A.</Company>
-    <Description>CDP4 Batch editor tool</Description>
+    <Description>CDP4 Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
     <Copyright>Copyright © RHEA System S.A.</Copyright>
     <Version>1.1.0</Version>
   </PropertyGroup>
