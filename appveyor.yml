@@ -57,7 +57,7 @@ test_script:
     -returntargetcode
     -hideskipped:All
     -output:"%TEST_COVERAGE%"
-    -filter:"+[CDP4*]* -[*.Tests*]* -[*.Views]*"
+    -filter:"+[CDPBatchEditor*]* -[*.Tests*]*"
     -excludebyattribute:*.ExcludeFromCodeCoverageAttribute
 
 after_test:
