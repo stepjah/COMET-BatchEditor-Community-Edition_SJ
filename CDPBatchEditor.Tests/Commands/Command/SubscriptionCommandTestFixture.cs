@@ -69,11 +69,11 @@ namespace CDPBatchEditor.Tests.Commands.Command
         public void VerifySetParameterSubscriptionsSwitch()
         {
             const string parameterUserFriendlyShortName = "testParameter3", elementDefinitionShortName = "testElementDefinition";
-            this.BuildAction($"--action={CommandEnumeration.Subscribe} --parameter-switch REFERENCE -m TEST --parameters={parameterUserFriendlyShortName} --element-definition={elementDefinitionShortName} --domain=testDomain2");
+            this.BuildAction($"--action={CommandEnumeration.Subscribe} --parameter-switch REFERENCE -m TEST --parameters={parameterUserFriendlyShortName} --element-definition={elementDefinitionShortName} --domain=testDomain");
 
             Assert.IsTrue(this.Parameter4.ParameterSubscription.All(
                 s => s.ValueSet.All(
-                    v => v.ValueSwitch == ParameterSwitchKind.COMPUTED)));
+                    v => v.ValueSwitch == ParameterSwitchKind.MANUAL)));
 
             this.subscriptionCommand.SetParameterSubscriptionsSwitch();
 
