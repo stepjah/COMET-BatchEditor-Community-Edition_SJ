@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageIcon>CDP-Community-Edition.png</PackageIcon>
+    <ApplicationIcon>cdplogo_48x48.ico</ApplicationIcon>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CDPBatchEditor</RootNamespace>
+    <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Kamil Wojnowski</Authors>
+    <Company>RHEA System S.A.</Company>
+    <Description>CDP4 Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
+    <Copyright>Copyright © RHEA System S.A.</Copyright>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Compile Remove="Utilities\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Models\**" />
+    <None Remove="Utilities\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="BatchEditor.cs" />
+    <Compile Remove="ToolBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\ascii-art.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ascii-art.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CDP4Common-CE" Version="5.1.0" />
+    <PackageReference Include="CDP4Dal-CE" Version="5.1.1" />
+    <PackageReference Include="CDP4JsonFileDal-CE" Version="5.0.6" />
+    <PackageReference Include="CDP4JsonSerializer-CE" Version="4.0.1" />
+    <PackageReference Include="CDP4RequirementsVerification-CE" Version="0.1.0" />
+    <PackageReference Include="CDP4Rules-CE" Version="1.2.1" />
+    <PackageReference Include="CDP4ServicesDal-CE" Version="5.0.6" />
+    <PackageReference Include="CDP4WspDal-CE" Version="5.0.6" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="Autofac" Version="5.2.0" />
+  </ItemGroup>
+</Project>
