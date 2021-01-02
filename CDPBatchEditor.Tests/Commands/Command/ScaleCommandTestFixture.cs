@@ -68,6 +68,25 @@ namespace CDPBatchEditor.Tests.Commands.Command
         }
 
         [Test]
+        public void VerifyAssignMeasurementScaleBadArgs()
+        {
+            const string parameterShortName = "l",
+                elementDefinitionShortName = "testElementDefinition2";
+
+            this.BuildAction($"--action {CommandEnumeration.SetScale} --scale {this.KilometerScale.ShortName}Bad -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
+
+            this.scaleCommand.AssignMeasurementScale();
+
+            Assert.IsEmpty(this.Transactions);
+
+            this.BuildAction($"--action {CommandEnumeration.SetScale} --scale {this.KilometerScale.ShortName} -m TEST --element-definition {elementDefinitionShortName} --domain testDomain ");
+
+            this.scaleCommand.AssignMeasurementScale();
+
+            Assert.IsEmpty(this.Transactions);
+        }
+
+        [Test]
         public void VerifyStandardizeDimensionsInMillimetre()
         {
             const string parameterShortName = "l",

@@ -26,6 +26,7 @@
 namespace CDPBatchEditor
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using Autofac;
@@ -38,6 +39,7 @@ namespace CDPBatchEditor
     /// <summary>
     /// Top Container classe that runs the the BatchEditor
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         /// <summary>

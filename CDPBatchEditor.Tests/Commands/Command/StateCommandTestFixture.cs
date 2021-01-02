@@ -68,6 +68,25 @@ namespace CDPBatchEditor.Tests.Commands.Command
         }
 
         [Test]
+        public void VerifyApplyStateDependencyBadArgs()
+        {
+            const string parameterShortName = "testParameter2",
+                elementDefinitionShortName = "testElementDefinition";
+
+            this.BuildAction($"--action {CommandEnumeration.ApplyOptionDependence} --state actualFiniteStateListTest -m TEST --element-definition {elementDefinitionShortName} --domain testDomain ");
+
+            this.stateCommand.ApplyOrRemoveStateDependency(false);
+
+            Assert.IsEmpty(this.Transactions);
+
+            this.BuildAction($"--action {CommandEnumeration.ApplyOptionDependence} --state actualFiniteStateListTestBad -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
+
+            this.stateCommand.ApplyOrRemoveStateDependency(false);
+
+            Assert.IsEmpty(this.Transactions);
+        }
+
+        [Test]
         public void VerifyRemoveStateDependency()
         {
             const string parameterShortName = "testParameter3",

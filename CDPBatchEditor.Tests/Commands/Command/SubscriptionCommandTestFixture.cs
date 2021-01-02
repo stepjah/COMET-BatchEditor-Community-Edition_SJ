@@ -88,5 +88,20 @@ namespace CDPBatchEditor.Tests.Commands.Command
                                                                              && p.ParameterSubscription.Any(s => s.Owner.ShortName == domain)
                                                                              && p.ParameterType.ShortName == parameterUserFriendlyShortName)));
         }
+
+        [Test]
+        public void VerifyBadSubscribeToParameters()
+        {
+            const string parameterUserFriendlyShortName = "testParameter2", elementDefinitionShortName = "testElementDefinition", domain = "testDomain2";
+            this.BuildAction($"--action={CommandEnumeration.Subscribe} -m TEST --element-definition={elementDefinitionShortName} --domain={domain}");
+
+            this.subscriptionCommand.Subscribe();
+
+            Assert.IsEmpty(this.Transactions);
+
+            this.BuildAction($"--action={CommandEnumeration.Subscribe} -m TEST --element-definition={elementDefinitionShortName}");
+
+            this.subscriptionCommand.Subscribe();
+        }
     }
 }
