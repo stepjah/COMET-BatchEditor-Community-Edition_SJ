@@ -95,7 +95,7 @@ namespace CDPBatchEditor.Commands.Command
 
             if (!string.IsNullOrWhiteSpace(this.commandArguments.Scale))
             {
-                measurementScale = this.sessionService.SiteDirectory.SiteReferenceDataLibrary.SelectMany(r => r.Scale).Single(x => x.ShortName == this.commandArguments.Scale);
+                measurementScale = this.sessionService.SiteDirectory.SiteReferenceDataLibrary.SelectMany(r => r.Scale).SingleOrDefault(x => x.ShortName == this.commandArguments.Scale);
             }
 
             if (measurementScale == null)
