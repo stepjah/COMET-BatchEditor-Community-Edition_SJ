@@ -8,7 +8,7 @@ environment:
   SONARCLOUD_ORGANIZATION: rheagroup
   SONARCLOUD_URL: 'https://sonarcloud.io'
   SONARCLOUD_TOKEN:
-    secure: But79evSZPrB0CMAYvdLxfLBfj48ooxqNREg5rFnqV8kUrVOlEe+GIu0gvrPMrPn
+    secure: 67KNIhsvMPwHylkTvfGtu39hYkK94X8svR0pxSBeqbm92ffGeViAv7SVDHnC+kbv
 
 for:
   # configuration for "master" branch, build in Release mode
