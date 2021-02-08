@@ -4,7 +4,7 @@ The Concurrent Design Platform 4 (CDP4) BatchEditor Community Editition (CE) is 
 
 ## Usage
 
-Find example usages of all commands in [CommandExamples.md](CommandExamples.md).
+Find example usages of all commands in [CommandExamples.md](CommandExamples.md) and [wiki](https://github.com/RHEAGROUP/CDP4-BatchEditor-Community-Edition/wiki).
 
 ## Build status
 
