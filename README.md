@@ -2,6 +2,10 @@
 
 The Concurrent Design Platform 4 (CDP4) BatchEditor Community Editition (CE) is the RHEA Group open source command line tool compliant with ECSS-E-TM-10-25 Annex A and Annex C webservices. The BatchEditor allows fast execution of common commands on large prtions of EngineeringModel data.
 
+## Installation
+
+The tool does not require an installer. Simply unpack `CDP4_BatchEditor_Community_Edition_x.y.z` in to a folder on the hard drive and execute commands using any command line console.
+
 ## Usage
 
 Find example usages of all commands in [CommandExamples.md](CommandExamples.md) and [wiki](https://github.com/RHEAGROUP/CDP4-BatchEditor-Community-Edition/wiki).
