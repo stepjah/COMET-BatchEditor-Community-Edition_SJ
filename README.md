@@ -1,18 +1,18 @@
-<img src="https://github.com/RHEAGROUP/CDP4-IME-Community-Edition/raw/master/CDP-Community-Edition.png" width="250">
+<img src="https://github.com/RHEAGROUP/COMET-IME-Community-Edition/raw/development/COMET-Community-Edition.png" width="250">
 
-The Concurrent Design Platform 4 (CDP4) BatchEditor Community Editition (CE) is the RHEA Group open source command line tool compliant with ECSS-E-TM-10-25 Annex A and Annex C webservices. The BatchEditor allows fast execution of common commands on large prtions of EngineeringModel data.
+The COMET BatchEditor Community Editition (CE) is the RHEA Group open source command line tool compliant with ECSS-E-TM-10-25 Annex A and Annex C webservices. The BatchEditor allows fast execution of common commands on large prtions of EngineeringModel data.
 
 ## Installation
 
-The tool does not require an installer. Simply unpack `CDP4_BatchEditor_Community_Edition_x.y.z` in to a folder on the hard drive and execute commands using any command line console.
+The tool does not require an installer. Simply unpack `COMET_BatchEditor_Community_Edition_x.y.z` in to a folder on the hard drive and execute commands using any command line console.
 
 ## Usage
 
-Find example usages of all commands in [CommandExamples.md](CommandExamples.md) and [wiki](https://github.com/RHEAGROUP/CDP4-BatchEditor-Community-Edition/wiki).
+Find example usages of all commands in [CommandExamples.md](CommandExamples.md) and [wiki](https://github.com/RHEAGROUP/COMET-BatchEditor-Community-Edition/wiki).
 
 ## Build status
 
-AppVeyor is used to build and test the C# CDP4-BatchEditor
+AppVeyor is used to build and test the C# COMET-BatchEditor
 
 Branch | Build Status
 ------- | :------------
@@ -43,15 +43,15 @@ The Concurrent Design method brings many advantages to the early design phase by
 
 To read more about Concurrent Design and how to use the CDP4 Desktop application to perform concurrent design please read our documentation at http://cdp4docs.rheagroup.com/
 
-## CDP4-SDK
+## COMET-SDK
 
-The CDP4-BatchEditor Community Edition makes use of the [CDP4-SDK](http://sdk.cdp4.org/).
+The COMET-BatchEditor Community Edition makes use of the [COMET-SDK](http://sdk.cdp4.org/).
 
 # License
 
-The CDP4-BatchEditor Community Edition is provided to the community under the GNU Lesser General Public License v3.0. See the license files for the details. The license can be found [here](LICENSE).
+The COMET-BatchEditor Community Edition is provided to the community under the GNU Lesser General Public License v3.0. See the license files for the details. The license can be found [here](LICENSE).
 
-The [RHEA Group](https://www.rheagroup.com) also provides the [CDP4 Web Services Enterprise Edition](https://github.com/RHEAGROUP/CDP4-WebServices-Community-Edition/wiki/CDP4-Web-Services-Enterprise-Edition) which comes with commercial support and more features. [Contact](https://www.rheagroup.com/contact) us for more details.
+The [RHEA Group](https://www.rheagroup.com) also provides the [COMET Web Services Enterprise Edition](https://github.com/RHEAGROUP/COMET-WebServices-Community-Edition/wiki/CDP4-Web-Services-Enterprise-Edition) which comes with commercial support and more features. [Contact](https://www.rheagroup.com/contact) us for more details.
 
 # Contributions
 
