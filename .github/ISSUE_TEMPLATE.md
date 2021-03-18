@@ -1,8 +1,8 @@
 ### Prerequisites
 
 - [ ] I have written a descriptive issue title
-- [ ] I have verified that I am running the latest version of the CDP4-BatchEditor
-- [ ] I have searched [open](https://github.com/RHEAGROUP/CDP4-BatchEditor-Community-Edition/issues) and [closed](https://github.com/RHEAGROUP/CDP4-BatchEditor-Community-Edition/issues?q=is%3Aissue+is%3Aclosed) issues to ensure it has not already been reported
+- [ ] I have verified that I am running the latest version of the COMET-BatchEditor
+- [ ] I have searched [open](https://github.com/RHEAGROUP/COMET-BatchEditor-Community-Edition/issues) and [closed](https://github.com/RHEAGROUP/COMET-BatchEditor-Community-Edition/issues?q=is%3Aissue+is%3Aclosed) issues to ensure it has not already been reported
 
 ### Description
 <!-- A description of the bug or feature -->
@@ -13,9 +13,9 @@
 ### System Configuration
 <!-- Tell us about the environment where you are experiencing the bug -->
 
-- [] CDP4-BatchEditor version:
+- [] COMET-BatchEditor version:
 - Environment (Operating system, version and so on):
 - .NET Framework version:
 - Additional information:
 
-<!-- Thanks for reporting the issue to CDP4-BatchEditor! -->
+<!-- Thanks for reporting the issue to COMET-BatchEditor! -->
