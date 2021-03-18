@@ -1,4 +1,4 @@
-<img src="https://github.com/RHEAGROUP/COMET-IME-Community-Edition/raw/development/COMET-Community-Edition.png" width="250">
+<img src="https://github.com/RHEAGROUP/COMET-BatchEditor-Community-Edition/raw/development/COMET.jpg" width="250">
 
 The COMET BatchEditor Community Editition (CE) is the RHEA Group open source command line tool compliant with ECSS-E-TM-10-25 Annex A and Annex C webservices. The BatchEditor allows fast execution of common commands on large prtions of EngineeringModel data.
 
