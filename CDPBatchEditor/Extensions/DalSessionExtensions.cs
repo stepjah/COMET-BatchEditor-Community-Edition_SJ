@@ -30,6 +30,7 @@ namespace CDPBatchEditor.Extensions
     using System.Threading.Tasks;
 
     using CDP4Dal;
+    using CDP4Dal.Exceptions;
     using CDP4Dal.Operations;
 
     /// <summary>
@@ -42,7 +43,12 @@ namespace CDPBatchEditor.Extensions
         /// </summary>
         /// <param name="session">The <see cref="ISession" /> to perform the write on.</param>
         /// <param name="transactions">The <see cref="IEnumerable{ThingTransactions}" />.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// An awaitable <see cref="Task"/>
+        /// </returns>
+        /// <exception cref="DalWriteException">
+        /// thrown when the write (update) operation failed
+        /// </exception>
         public static async Task Write(this ISession session, IEnumerable<ThingTransaction> transactions)
         {
             try
@@ -56,7 +62,7 @@ namespace CDPBatchEditor.Extensions
             }
             catch (Exception exception)
             {
-                throw new Exception("The inline update operation failed", exception);
+                throw new DalWriteException("The inline update operation failed", exception);
             }
         }
     }
