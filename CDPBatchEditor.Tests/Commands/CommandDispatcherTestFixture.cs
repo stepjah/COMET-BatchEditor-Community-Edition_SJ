@@ -86,7 +86,7 @@ namespace CDPBatchEditor.Tests.Commands
                 {
                     this.commandDispatcher.Invoke();
                 }
-                catch (NotImplementedException e)
+                catch (NotImplementedException)
                 {
                     callCount--;
                     continue;
