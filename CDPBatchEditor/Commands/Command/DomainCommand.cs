@@ -217,8 +217,6 @@ namespace CDPBatchEditor.Commands.Command
             {
                 foreach (var elementDefinition in this.sessionService.Iteration.Element.Where(e => this.filterService.IsFilteredIn(e)))
                 {
-                    var elementDefinitionOwner = elementDefinition.Owner;
-
                     foreach (var parameter in elementDefinition.Parameter
                         .Where(
                             p => this.commandArguments.SelectedParameters.Contains(p.ParameterType.ShortName)
