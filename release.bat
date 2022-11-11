@@ -6,7 +6,7 @@ ECHO.
 
 IF %1.==. GOTO VersionError
 set version=%1
-set buildpath=.\CDPBatchEditor\bin\Release\netcoreapp3.1\*
+set buildpath=.\CDPBatchEditor\bin\Release\net7.0\*
 set filename=CDP4_BatchEditor_Community_Edition_%version%.zip
 
 GOTO Setup
@@ -41,7 +41,9 @@ ECHO.
 ECHO Building Release Version
 ECHO.
 
-call dotnet build -c Release -v q
+call dotnet clean -c Release
+call dotnet restore
+call dotnet build --no-restore -c Release -v q
 
 ECHO Error Level %errorlevel%
 
@@ -51,7 +53,7 @@ ECHO.
 ECHO Running Unit Tests
 ECHO.
 
-call dotnet test -c Release -v q
+call dotnet test --no-build -c Release -v q
 
 ECHO Error Level %errorlevel%
 

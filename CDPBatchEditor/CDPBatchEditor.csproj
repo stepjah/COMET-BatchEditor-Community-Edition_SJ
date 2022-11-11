@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <PackageIcon>CDP-Community-Edition.png</PackageIcon>
     <ApplicationIcon>cdplogo_48x48.ico</ApplicationIcon>
     <LangVersion>latest</LangVersion>
     <RootNamespace>CDPBatchEditor</RootNamespace>
-    <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Kamil Wojnowski</Authors>
+    <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski</Authors>
     <Company>RHEA System S.A.</Company>
     <Description>CDP4 Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
     <Copyright>Copyright © RHEA System S.A.</Copyright>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Models\**" />
@@ -33,15 +33,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CDP4Common-CE" Version="5.1.0" />
-    <PackageReference Include="CDP4Dal-CE" Version="5.1.1" />
-    <PackageReference Include="CDP4JsonFileDal-CE" Version="5.0.6" />
-    <PackageReference Include="CDP4JsonSerializer-CE" Version="4.0.1" />
-    <PackageReference Include="CDP4RequirementsVerification-CE" Version="0.1.0" />
-    <PackageReference Include="CDP4Rules-CE" Version="1.2.1" />
-    <PackageReference Include="CDP4ServicesDal-CE" Version="5.0.6" />
-    <PackageReference Include="CDP4WspDal-CE" Version="5.0.6" />
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="CDP4Common-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4Dal-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4JsonFileDal-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4JsonSerializer-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4RequirementsVerification-CE" Version="1.14.0" />
+    <PackageReference Include="CDP4Rules-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4ServicesDal-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4WspDal-CE" Version="8.3.0" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
   </ItemGroup>
 </Project>

@@ -81,7 +81,7 @@ namespace CDPBatchEditor.Tests.Services
             this.session.Setup(x => x.DataSourceUri).Returns(this.uri.ToString);
             this.session.Setup(x => x.RetrieveSiteDirectory()).Returns(this.siteDirectory);
             this.session.Setup(x => x.Close());
-            this.session.Setup(x => x.Read(this.iteration, this.domain));
+            this.session.Setup(x => x.Read(this.iteration, this.domain, It.IsAny<bool>()));
 
             this.filterService.Setup(x => x.ProcessFilters(this.iteration, this.siteDirectory.Domain));
 
@@ -121,9 +121,9 @@ namespace CDPBatchEditor.Tests.Services
         [Test]
         public void VerifyOpen()
         {
-            this.session.Setup(x => x.Open());
+            this.session.Setup(x => x.Open(It.IsAny<bool>()));
             this.sessionService.Open();
-            this.session.Verify(x => x.Open(), Times.Once);
+            this.session.Verify(x => x.Open(It.IsAny<bool>()), Times.Once);
         }
 
         [Test]
