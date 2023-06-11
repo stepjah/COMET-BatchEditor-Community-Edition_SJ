@@ -33,15 +33,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CDP4Common-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4Dal-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4JsonFileDal-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4JsonSerializer-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4RequirementsVerification-CE" Version="1.14.0" />
-    <PackageReference Include="CDP4Rules-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4ServicesDal-CE" Version="8.3.0" />
-    <PackageReference Include="CDP4WspDal-CE" Version="8.3.0" />
+    <PackageReference Include="CDP4Common-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4Dal-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4JsonFileDal-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4JsonSerializer-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4RequirementsVerification-CE" Version="2.0.0" />
+    <PackageReference Include="CDP4Rules-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4ServicesDal-CE" Version="9.0.0" />
+    <PackageReference Include="CDP4WspDal-CE" Version="9.0.0" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac" Version="7.0.1" />
   </ItemGroup>
 </Project>
