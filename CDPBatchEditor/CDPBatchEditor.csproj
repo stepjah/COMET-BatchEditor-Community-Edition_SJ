@@ -3,12 +3,12 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <PackageIcon>CDP-Community-Edition.png</PackageIcon>
-    <ApplicationIcon>cdplogo_48x48.ico</ApplicationIcon>
+    <ApplicationIcon>cdp4-comet.ico</ApplicationIcon>
     <LangVersion>latest</LangVersion>
     <RootNamespace>CDPBatchEditor</RootNamespace>
     <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski</Authors>
     <Company>RHEA System S.A.</Company>
-    <Description>CDP4 Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
+    <Description>CDP4-COMET Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
     <Copyright>Copyright © RHEA System S.A.</Copyright>
     <Version>2.0.0</Version>
   </PropertyGroup>
