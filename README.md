@@ -4,7 +4,9 @@ The CDP4-COMET BatchEditor Community Editition (CE) is the RHEA Group open sourc
 
 ## Installation
 
-The tool does not require an installer. Simply unpack `CDP4_COMET_BatchEditor_Community_Edition_x.y.z` in to a folder on the hard drive and execute commands using any command line console.
+The batch editor can be installed by downloading the zipped package or as a dotnet tool from https://nuget.org.
+  - download and Unpack `CDP4_COMET_BatchEditor_Community_Edition_x.y.z` in to a folder on the hard drive and execute commands using any command line console.
+  - dotnet tool install --global cdp4-comet-be
 
 ## Usage
 
