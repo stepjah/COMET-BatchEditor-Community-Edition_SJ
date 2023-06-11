@@ -39,8 +39,6 @@ namespace CDP4BatchEditor
 
     using CDP4ServicesDal;
 
-    using Ocdt.Tools;
-
     using Enumerable = System.Linq.Enumerable;
 
     /// <inheritdoc />
@@ -48,7 +46,7 @@ namespace CDP4BatchEditor
     /// Batch editor command line tool to execute bulk changes on an CDP4 Persistent Data Store (PDS) via the Web Services
     /// Processor (WSP).
     /// </summary>
-    public class BatchEditor : ToolBase
+    public class BatchEditor
     {
         /// <summary>
         /// The short names of the Category filter. The requested action is only applied to ElementDefinitions that are a member of

@@ -58,7 +58,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
             this.subscriptionCommand.SetParameterSubscriptionsSwitch();
 
             var things = this.Transactions.SelectMany(t => t.UpdatedThing.Select(a => a.Value)).ToArray();
-            Assert.AreEqual(1, things.Count());
+            Assert.AreEqual(1, things.Length);
             var valueSet = things.First() as ParameterSubscriptionValueSet;
             var parameter = valueSet?.GetContainerOfType<Parameter>();
 

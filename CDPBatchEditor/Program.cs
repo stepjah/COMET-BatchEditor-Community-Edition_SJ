@@ -40,7 +40,7 @@ namespace CDPBatchEditor
     /// Top Container classe that runs the the BatchEditor
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Main method that is the entry point for this BatchEditor

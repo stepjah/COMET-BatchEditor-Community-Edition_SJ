@@ -195,22 +195,22 @@ namespace CDPBatchEditor.Commands.Command
                 if (thingClone.Computed.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Computed[0];
-                    thingClone.Computed[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Computed[0], errorCount == 0);
+                    thingClone.Computed[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Computed[0], errorCount == 0);
                 }
 
                 if (thingClone.Manual.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Manual[0];
-                    thingClone.Manual[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Manual[0], errorCount == 0);
+                    thingClone.Manual[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Manual[0], errorCount == 0);
                 }
 
                 if (thingClone.Reference.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Reference[0];
-                    thingClone.Reference[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Reference[0], errorCount == 0);
+                    thingClone.Reference[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, ownerShortName, oldValue, thingClone.Reference[0], errorCount == 0);
                 }
 
                 this.sessionService.Transactions.Last().CreateOrUpdate(thingClone);
@@ -224,22 +224,22 @@ namespace CDPBatchEditor.Commands.Command
                 if (thingClone.Computed.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Computed[0];
-                    thingClone.Computed[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Computed[0], errorCount == 0, true);
+                    thingClone.Computed[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Computed[0], errorCount == 0, true);
                 }
 
                 if (thingClone.Manual.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Manual[0];
-                    thingClone.Manual[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Manual[0], errorCount == 0, true);
+                    thingClone.Manual[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Manual[0], errorCount == 0, true);
                 }
 
                 if (thingClone.Reference.Count == 1 && errorCount == 0)
                 {
                     var oldValue = thingClone.Reference[0];
-                    thingClone.Reference[0] = this.ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
-                    this.OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Reference[0], errorCount == 0, true);
+                    thingClone.Reference[0] = ConvertNumericValue(oldValue, conversionFactor, ref errorCount);
+                    OutputReport(elementDefinitionShortName, parameterClone.UserFriendlyShortName, oldScale, newScale, subscriber, oldValue, thingClone.Reference[0], errorCount == 0, true);
                 }
 
                 this.sessionService.Transactions.Last().CreateOrUpdate(thingClone);
@@ -266,7 +266,7 @@ namespace CDPBatchEditor.Commands.Command
         /// <param name="newValue">The new value</param>
         /// <param name="hasConversionSucceed">Assertion whether the conversion has succeed</param>
         /// <param name="isSubscription">Assertion whether this is a parameter subscription or not.</param>
-        private void OutputReport(string elementDefinitionShortName, string parameterShortName, string oldScaleShortName, IShortNamedThing newScale, string ownerShortName, string oldValue, string newValue, bool hasConversionSucceed = true, bool isSubscription = false)
+        private static void OutputReport(string elementDefinitionShortName, string parameterShortName, string oldScaleShortName, IShortNamedThing newScale, string ownerShortName, string oldValue, string newValue, bool hasConversionSucceed = true, bool isSubscription = false)
         {
             var ownership = isSubscription ? "subscribed by" : "owned by";
             var messageStart = $"In {elementDefinitionShortName} parameter \"{parameterShortName}\" ({ownership} {ownerShortName}) value {oldValue} {oldScaleShortName}";
@@ -284,7 +284,7 @@ namespace CDPBatchEditor.Commands.Command
         /// <param name="conversionFactor"> The conversion factor. </param>
         /// <param name="errorCount"> Error count, that is incremented for every conversion error detected. </param>
         /// <returns> The string value converted to the new scale. </returns>
-        private string ConvertNumericValue(string oldValue, double conversionFactor, ref int errorCount)
+        private static string ConvertNumericValue(string oldValue, double conversionFactor, ref int errorCount)
         {
             var newValue = "-";
 

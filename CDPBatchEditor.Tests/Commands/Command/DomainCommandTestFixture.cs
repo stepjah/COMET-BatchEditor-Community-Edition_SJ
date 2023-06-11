@@ -45,7 +45,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
             this.domainCommand = new DomainCommand(this.CommandArguments, this.SessionService.Object, this.FilterService.Object);
         }
 
-        private void AssertThingHasExpectedOwner(DomainOfExpertise oldOwner, DomainOfExpertise newOwner, IOwnedThing thing)
+        private static void AssertThingHasExpectedOwner(DomainOfExpertise oldOwner, DomainOfExpertise newOwner, IOwnedThing thing)
         {
             Assert.IsNotNull(thing);
             Assert.AreNotSame(oldOwner, thing.Owner);
@@ -75,7 +75,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             foreach (var thing in this.Transactions.SelectMany(x => x.UpdatedThing.Values.Select(t => t as IOwnedThing)))
             {
-                this.AssertThingHasExpectedOwner(this.Domain, this.Domain2, thing);
+                AssertThingHasExpectedOwner(this.Domain, this.Domain2, thing);
             }
 
             Assert.IsTrue(updatedElementDefinitions.Single().ShortName == this.TestElementDefinition.ShortName);
@@ -119,7 +119,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             foreach (var thing in this.Transactions.SelectMany(x => x.UpdatedThing.Values.Select(t => t as IOwnedThing)))
             {
-                this.AssertThingHasExpectedOwner(this.Domain, this.Domain2, thing);
+                AssertThingHasExpectedOwner(this.Domain, this.Domain2, thing);
             }
         }
 
@@ -146,11 +146,11 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             var updateParameters = this.Transactions.SelectMany(x => x.UpdatedThing).Where(u => u.Value is Parameter p).Select(u => u.Value as Parameter).ToList();
             var parameter = updateParameters.FirstOrDefault(x => x.ParameterType.ShortName == this.Parameter5.ParameterType.ShortName);
-            this.AssertThingHasExpectedOwner(oldOwner1, this.Domain3, parameter);
+            AssertThingHasExpectedOwner(oldOwner1, this.Domain3, parameter);
             parameter = updateParameters.FirstOrDefault(x => x.ParameterType.ShortName == this.Parameter6.ParameterType.ShortName);
-            this.AssertThingHasExpectedOwner(oldOwner2, this.Domain4, parameter);
+            AssertThingHasExpectedOwner(oldOwner2, this.Domain4, parameter);
             parameter = updateParameters.FirstOrDefault(x => x.ParameterType.ShortName == this.Parameter7.ParameterType.ShortName);
-            this.AssertThingHasExpectedOwner(oldOwner3, this.Domain5, parameter);
+            AssertThingHasExpectedOwner(oldOwner3, this.Domain5, parameter);
         }
     }
 }

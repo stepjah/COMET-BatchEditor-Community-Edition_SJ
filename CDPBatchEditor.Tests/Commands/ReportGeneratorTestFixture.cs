@@ -343,7 +343,7 @@ namespace CDPBatchEditor.Tests.Commands
         [Test]
         public void VerifyParameterToCsv()
         {
-            this.reportGenerator.ParametersToCsv();
+            Assert.DoesNotThrow(() => this.reportGenerator.ParametersToCsv());
         }
     }
 }
