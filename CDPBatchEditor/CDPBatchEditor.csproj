@@ -3,7 +3,7 @@
     <PropertyGroup Label="Package">
         <Title>CDP4-COMET Batch Editor</Title>
         <Description>CDP4-COMET Batch Editor is intended for fast administrative tasks on a specified E-TM-10-25 EngineeringModel.</Description>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <OutputType>Exe</OutputType>
         <PackAsTool>true</PackAsTool>
@@ -11,11 +11,10 @@
         <ToolCommandName>cdp4-comet-be</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
         <RootNamespace>CDPBatchEditor</RootNamespace>
-        <Version>3.0.0</Version>
+        <Version>4.0.0</Version>
         <PackageIcon>cdp4-icon.png</PackageIcon>
         <PackageReleaseNotes>
-            [Update] cdp4 dependencies
-            [SQ] improvements
+            [Update] Starion Group
         </PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
