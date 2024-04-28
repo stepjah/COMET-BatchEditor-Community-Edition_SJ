@@ -100,12 +100,14 @@ namespace CDPBatchEditor.Tests.Commands
         private SimpleQuantityKind parameterType4;
         private Mock<ISessionService> sessionService;
         private ReportGenerator reportGenerator;
+        private Mock<ICDPMessageBus> messageBus;
 
         private void SetupData()
         {
+            this.messageBus = new Mock<ICDPMessageBus>();
             this.sessionService = new Mock<ISessionService>();
             this.uri = new Uri(BaseUri);
-            this.Assembler = new Assembler(this.uri);
+            this.Assembler = new Assembler(this.uri, this.messageBus.Object);
             this.siteDirectory = new SiteDirectory(Guid.NewGuid(), this.Assembler.Cache, this.uri);
 
             this.SetupDomainPersonAndParticipant();

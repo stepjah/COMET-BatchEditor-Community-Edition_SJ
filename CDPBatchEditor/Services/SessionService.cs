@@ -62,6 +62,11 @@ namespace CDPBatchEditor.Services
         private readonly IFilterService filterService;
 
         /// <summary>
+        /// The (injected) <see cref="ICDPMessageBus"" />
+        /// </summary>
+        private readonly ICDPMessageBus messageBus;
+
+        /// <summary>
         /// Holds the credentials used to connect to the server
         /// </summary>
         private Credentials credentials;
@@ -69,11 +74,12 @@ namespace CDPBatchEditor.Services
         /// <summary>
         /// Empty constructor used for test purpose
         /// </summary>
-        public SessionService(ICommandArguments commandArguments, IFilterService filterService, ISession session)
+        public SessionService(ICommandArguments commandArguments, IFilterService filterService, ISession session, ICDPMessageBus messageBus)
         {
             this.commandArguments = commandArguments;
             this.filterService = filterService;
             this.Session = session;
+            this.messageBus = messageBus;
         }
 
         /// <summary>
@@ -135,7 +141,7 @@ namespace CDPBatchEditor.Services
             var dal = new CdpServicesDal();
 
             this.credentials = new Credentials(this.commandArguments.UserName, this.commandArguments.Password, this.commandArguments.ServerUri);
-            this.Session ??= new Session(dal, this.credentials);
+            this.Session ??= new Session(dal, this.credentials, this.messageBus);
             this.Session.Open().GetAwaiter().GetResult();
 
             if (this.SetProperties())

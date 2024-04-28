@@ -47,28 +47,30 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
         private static void AssertThingHasExpectedOwner(DomainOfExpertise oldOwner, DomainOfExpertise newOwner, IOwnedThing thing)
         {
-            Assert.IsNotNull(thing);
-            Assert.AreNotSame(oldOwner, thing.Owner);
-            Assert.AreSame(newOwner, thing.Owner);
+            Assert.That(thing, Is.Not.Null);
+            Assert.That(oldOwner, Is.Not.SameAs(thing.Owner));
+            Assert.That(newOwner, Is.SameAs(thing.Owner));
+
+
         }
 
         [Test]
         public void VerifyChangeDomain()
         {
-            Assert.AreEqual(0, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(0));
 
-            Assert.IsEmpty(this.Transactions.SelectMany(x => x.UpdatedThing));
+            Assert.That(this.Transactions.SelectMany(x => x.UpdatedThing), Is.Empty);
 
             var action = "--action ChangeDomain -m TEST --parameters testParameter,testParameter2,P_mean  --element-definition testElementDefinition --domain testDomain --to-domain testDomain2";
             this.BuildAction(action);
             this.domainCommand.ChangeDomain();
 
-            Assert.AreEqual(10, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(10));
 
-            Assert.IsNotEmpty(this.Transactions.SelectMany(x => x.UpdatedThing));
-            Assert.IsEmpty(this.Transactions.SelectMany(x => x.AddedThing));
+            Assert.That(this.Transactions.SelectMany(x => x.UpdatedThing), Is.Not.Empty);
+            Assert.That(this.Transactions.SelectMany(x => x.AddedThing), Is.Empty);
 
-            Assert.IsTrue(this.Transactions.All(x => x.UpdatedThing.Any() && x.UpdatedThing.All(y => y.Value is IOwnedThing p && p.Owner == this.Domain2)));
+            Assert.That(this.Transactions.All(x => x.UpdatedThing.Any() && x.UpdatedThing.All(y => y.Value is IOwnedThing p && p.Owner == this.Domain2)), Is.True);
 
             var updatedParameters = this.Transactions.SelectMany(x => x.UpdatedThing.Values.Select(t => t as Parameter).Where(e => e != null));
             var updatedElementDefinitions = this.Transactions.SelectMany(x => x.UpdatedThing.Values.Select(t => t as ElementDefinition).Where(e => e != null));
@@ -78,33 +80,33 @@ namespace CDPBatchEditor.Tests.Commands.Command
                 AssertThingHasExpectedOwner(this.Domain, this.Domain2, thing);
             }
 
-            Assert.IsTrue(updatedElementDefinitions.Single().ShortName == this.TestElementDefinition.ShortName);
+            Assert.That(updatedElementDefinitions.Single().ShortName == this.TestElementDefinition.ShortName);
         }
 
         [Test]
         public void VerifyChangeDomainFails()
         {
-            Assert.AreEqual(0, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(0));
 
-            Assert.IsEmpty(this.Transactions.SelectMany(x => x.UpdatedThing));
+            Assert.That(this.Transactions.SelectMany(x => x.UpdatedThing), Is.Empty);
 
             var action = "--action ChangeDomain -m TEST --parameters testParameter,testParameter2 --element-definition testElementDefinition --domain bla --to-domain bla2";
             this.BuildAction(action);
             this.domainCommand.ChangeDomain();
 
-            Assert.AreEqual(0, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(0));
 
             action = "--action ChangeDomain -m TEST --parameters testParameter,testParameter2 --element-definition testElementDefinition --domain testDomain --to-domain testDomain";
             this.BuildAction(action);
             this.domainCommand.ChangeDomain();
 
-            Assert.AreEqual(0, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(0));
 
             action = "--action ChangeDomain -m TEST --parameters testParameter,testParameter2 --element-definition testElementDefinition --domain testDomain --to-domain bla2";
             this.BuildAction(action);
             this.domainCommand.ChangeDomain();
 
-            Assert.AreEqual(0, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -114,8 +116,8 @@ namespace CDPBatchEditor.Tests.Commands.Command
             this.BuildAction(action);
             this.domainCommand.ChangeParameterOwnership();
 
-            Assert.AreEqual(2, this.Transactions.Count);
-            Assert.IsNotEmpty(this.Transactions.SelectMany(x => x.UpdatedThing));
+            Assert.That(this.Transactions.Count, Is.EqualTo(2));
+            Assert.That(this.Transactions.SelectMany(x => x.UpdatedThing), Is.Not.Empty);
 
             foreach (var thing in this.Transactions.SelectMany(x => x.UpdatedThing.Values.Select(t => t as IOwnedThing)))
             {
@@ -133,16 +135,16 @@ namespace CDPBatchEditor.Tests.Commands.Command
             var oldOwner2 = this.Parameter6.Owner;
             var oldOwner3 = this.Parameter7.Owner;
 
-            Assert.AreSame(this.Domain, oldOwner1);
-            Assert.AreSame(this.Domain, oldOwner2);
-            Assert.AreSame(this.Domain, oldOwner3);
+            Assert.That(this.Domain, Is.SameAs(oldOwner1));
+            Assert.That(this.Domain, Is.SameAs(oldOwner2));
+            Assert.That(this.Domain, Is.SameAs(oldOwner3));
 
             this.domainCommand.SetGenericEquipmentOwnership();
 
-            Assert.AreEqual(3, this.Transactions.Count);
+            Assert.That(this.Transactions.Count, Is.EqualTo(3));
 
-            Assert.IsNotEmpty(this.Transactions.SelectMany(x => x.UpdatedThing));
-            Assert.IsEmpty(this.Transactions.SelectMany(x => x.AddedThing));
+            Assert.That(this.Transactions.SelectMany(x => x.UpdatedThing), Is.Not.Empty);
+            Assert.That(this.Transactions.SelectMany(x => x.AddedThing), Is.Empty);
 
             var updateParameters = this.Transactions.SelectMany(x => x.UpdatedThing).Where(u => u.Value is Parameter p).Select(u => u.Value as Parameter).ToList();
             var parameter = updateParameters.FirstOrDefault(x => x.ParameterType.ShortName == this.Parameter5.ParameterType.ShortName);

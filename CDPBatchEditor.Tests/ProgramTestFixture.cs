@@ -73,21 +73,21 @@ namespace CDPBatchEditor.Tests
         public void VerifyAssemblyVersion()
         {
             var version = Program.QueryBatchEditorVersion();
-            Assert.IsNotNull(version);
-            Assert.AreEqual(4, version.Split('.').Length);
-            Assert.IsNotNull(new Version(version));
+            Assert.That(version, Is.Not.Null);
+            Assert.That(version.Split('.').Length, Is.EqualTo(4));
+            Assert.That(new Version(version), Is.Not.Null);
         }
 
         [Test]
         public void VerifyContainer()
         {
             AppContainer.BuildContainer(this.commandArguments.Object);
-            Assert.IsNotNull(AppContainer.Container);
-            Assert.IsNotEmpty(AppContainer.Container.ComponentRegistry.Registrations);
-            Assert.IsTrue(AppContainer.Container.IsRegistered<IApp>());
-            Assert.IsTrue(AppContainer.Container.IsRegistered<ISessionService>());
-            Assert.IsTrue(AppContainer.Container.IsRegistered<ICommandArguments>());
-            Assert.IsTrue(AppContainer.Container.IsRegistered<ICommandDispatcher>());
+            Assert.That(AppContainer.Container, Is.Not.Null);
+            Assert.That(AppContainer.Container.ComponentRegistry.Registrations, Is.Not.Empty);
+            Assert.That(AppContainer.Container.IsRegistered<IApp>());
+            Assert.That(AppContainer.Container.IsRegistered<ISessionService>());
+            Assert.That(AppContainer.Container.IsRegistered<ICommandArguments>());
+            Assert.That(AppContainer.Container.IsRegistered<ICommandDispatcher>());
         }
 
         [Test]

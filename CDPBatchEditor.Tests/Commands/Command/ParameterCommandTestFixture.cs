@@ -56,28 +56,28 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.parameterCommand.Add();
 
-            Assert.IsTrue(
+            Assert.That(
                 this.SessionService.Object.Transactions.Any(
                     t => t.AddedThing.Any(
                         a => a is Parameter p
-                             && p.ParameterType.ShortName == parameterUserFriendlyShortName)));
+                             && p.ParameterType.ShortName == parameterUserFriendlyShortName)), Is.True);
 
-            Assert.IsTrue(
+            Assert.That(
                 string.IsNullOrWhiteSpace(this.CommandArguments.ParameterGroup)
                 || this.SessionService.Object.Transactions.Any(
                     t =>
                         t.AddedThing.Any(
                             a => a is ParameterGroup g
-                                 && g.Name == parameterGroupdShortName)));
+                                 && g.Name == parameterGroupdShortName)), Is.True);
 
-            Assert.IsTrue(
+            Assert.That(
                 string.IsNullOrWhiteSpace(this.CommandArguments.ParameterGroup)
                 || this.SessionService.Object.Transactions.Any(
                     t =>
                         t.AddedThing.Any(
                             a => a is Parameter p
                                  && p.Group.Name == parameterGroupdShortName
-                                 && p.ParameterType.ShortName == parameterUserFriendlyShortName)));
+                                 && p.ParameterType.ShortName == parameterUserFriendlyShortName)), Is.True);
         }
 
         [Test]
@@ -90,11 +90,11 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.parameterCommand.Remove();
 
-            Assert.IsTrue(
+            Assert.That(
                 this.SessionService.Object.Transactions.Any(
                     t => t.DeletedThing.Any(
                         a => a.ClassKind == ClassKind.Parameter
-                             && a.UserFriendlyShortName == $"{elementDefinitionShortName}.{parameterUserFriendlyShortName}")));
+                             && a.UserFriendlyShortName == $"{elementDefinitionShortName}.{parameterUserFriendlyShortName}")), Is.True);
         }
     }
 }

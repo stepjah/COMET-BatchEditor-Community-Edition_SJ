@@ -53,33 +53,33 @@ namespace CDPBatchEditor.Tests.Commands.Command
             this.BuildAction($"--action {CommandEnumeration.MoveReferenceValuesToManualValues} -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
             var elementDefinition = this.Iteration.Element.FirstOrDefault(e => e.ShortName == elementDefinitionShortName);
-            Assert.IsNotNull(elementDefinition);
+            Assert.That(elementDefinition, Is.Not.Null);
 
             var parameter = elementDefinition.Parameter.Where(p => p.ParameterType.ShortName == parameterShortName).ToArray();
-            Assert.IsNotEmpty(parameter);
+            Assert.That(parameter, Is.Not.Empty);
 
-            Assert.IsTrue(
+            Assert.That(
                 parameter.All(
                     p => p.ValueSet.Any(
                         v => v.ValueSwitch == ParameterSwitchKind.REFERENCE && v.Reference
-                                 .Any(vr => vr == this.ValueSet.Reference.FirstOrDefault()))));
+                                 .Any(vr => vr == this.ValueSet.Reference.FirstOrDefault()))), Is.True);
 
-            Assert.IsTrue(
+            Assert.That(
                 parameter.All(
                     p => p.ValueSet.Any(
-                        v => v.Manual.All(vr => vr == "-"))));
+                        v => v.Manual.All(vr => vr == "-"))), Is.True);
 
             this.valueSetCommand.MoveReferenceValuesToManualValues();
 
             var thing = this.Transactions.Select(t => t.AddedThing.Single(a => a is ParameterValueSet)).FirstOrDefault();
 
-            Assert.IsTrue(thing?.GetContainerOfType<Parameter>().ParameterType.ShortName == parameterShortName);
+            Assert.That(thing?.GetContainerOfType<Parameter>().ParameterType.ShortName == parameterShortName, Is.True);
 
-            Assert.IsInstanceOf<ParameterValueSet>(thing);
+            Assert.That(thing, Is.InstanceOf<ParameterValueSet>());
 
             var parameterValueSet = (ParameterValueSet) thing;
-            Assert.IsTrue(parameterValueSet.ValueSwitch == ParameterSwitchKind.MANUAL);
-            Assert.IsTrue(parameterValueSet.Manual.Any(vr => vr == this.ValueSet.Reference.FirstOrDefault()));
+            Assert.That(parameterValueSet.ValueSwitch == ParameterSwitchKind.MANUAL, Is.True);
+            Assert.That(parameterValueSet.Manual.Any(vr => vr == this.ValueSet.Reference.FirstOrDefault()), Is.True);
         }
     }
 }

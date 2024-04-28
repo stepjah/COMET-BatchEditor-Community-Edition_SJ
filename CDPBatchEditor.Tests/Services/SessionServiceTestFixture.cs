@@ -48,11 +48,12 @@ namespace CDPBatchEditor.Tests.Services
         [SetUp]
         public void Setup()
         {
+            this.messageBus = new Mock<ICDPMessageBus>();
             this.commandArguments = new Mock<ICommandArguments>();
             this.filterService = new Mock<IFilterService>();
             this.session = new Mock<ISession>();
             this.uri = new Uri(BaseUri);
-            this.assembler = new Assembler(this.uri);
+            this.assembler = new Assembler(this.uri, this.messageBus.Object);
             this.siteDirectory = new SiteDirectory(Guid.NewGuid(), this.assembler.Cache, this.uri);
 
             var iterationSetup = new IterationSetup(Guid.NewGuid(), this.assembler.Cache, this.uri);
@@ -91,7 +92,7 @@ namespace CDPBatchEditor.Tests.Services
             this.commandArguments.Setup(x => x.UserName).Returns("admin");
             this.commandArguments.Setup(x => x.DryRun).Returns(false);
 
-            this.sessionService = new SessionService(this.commandArguments.Object, this.filterService.Object, this.session.Object);
+            this.sessionService = new SessionService(this.commandArguments.Object, this.filterService.Object, this.session.Object, this.messageBus.Object);
         }
 
         private const string BaseUri = "http://test.com";
@@ -107,6 +108,7 @@ namespace CDPBatchEditor.Tests.Services
         private Mock<IFilterService> filterService;
         private Mock<ICommandArguments> commandArguments;
         private EngineeringModel engineeringModel;
+        private Mock<ICDPMessageBus> messageBus;
 
         private ThingTransaction CreateDummyTransactions()
         {
@@ -133,7 +135,7 @@ namespace CDPBatchEditor.Tests.Services
             this.sessionService.Transactions.Add(this.CreateDummyTransactions());
             this.sessionService.Transactions.Add(this.CreateDummyTransactions());
 
-            Assert.AreEqual(3, this.sessionService.Transactions.Count);
+            Assert.That(this.sessionService.Transactions.Count, Is.EqualTo(3));
 
             this.sessionService.CloseAndSave();
             this.sessionService.Transactions.Clear();
@@ -141,20 +143,20 @@ namespace CDPBatchEditor.Tests.Services
             this.session.Verify(x => x.Write(It.IsAny<OperationContainer>()), Times.Exactly(3));
 
             this.session.Setup(x => x.RetrieveSiteDirectory());
-            Assert.IsFalse(this.sessionService.IsSessionOpen());
+            Assert.That(this.sessionService.IsSessionOpen(), Is.False);
             this.sessionService.Close();
         }
 
         [Test]
         public void VerifySessionOpen()
         {
-            Assert.IsTrue(this.sessionService.IsSessionOpen());
+            Assert.That(this.sessionService.IsSessionOpen(), Is.True);
         }
 
         [Test]
         public void VerifySetProperties()
         {
-            Assert.IsTrue(this.sessionService.SetProperties());
+            Assert.That(this.sessionService.SetProperties(), Is.True);
         }
     }
 }

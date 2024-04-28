@@ -49,8 +49,8 @@ namespace CDPBatchEditor.Tests.Resources
         public void LoadEmbeddedResource()
         {
             var resource = this.resourceLoader.LoadEmbeddedResource(this.path);
-            Assert.IsNotNull(resource);
-            Assert.IsNotEmpty(resource);
+            Assert.That(resource, Is.Not.Null);
+            Assert.That(resource, Is.Not.Empty);
             Assert.Throws<ArgumentNullException>(() => this.resourceLoader.LoadEmbeddedResource(null));
             Assert.Throws<MissingManifestResourceException>(() => this.resourceLoader.LoadEmbeddedResource("thispathdoesnotexist"));
         }

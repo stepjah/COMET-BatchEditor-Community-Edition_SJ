@@ -52,19 +52,19 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.ApplyOptionDependence} --state actualFiniteStateListTest -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?
                 .Parameter.Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => p.StateDependence is null));
+                .All(p => p.StateDependence is null), Is.True);
 
             this.stateCommand.ApplyOrRemoveStateDependency(false);
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.All(
                     t => t.UpdatedThing.All(
                         a => a.Value is Parameter p
                              && p.StateDependence == this.ActualPossibleFiniteStateList
-                             && p.ParameterType.ShortName == parameterShortName)));
+                             && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
 
         [Test]
@@ -77,13 +77,13 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.stateCommand.ApplyOrRemoveStateDependency(false);
 
-            Assert.IsEmpty(this.Transactions);
+            Assert.That(this.Transactions, Is.Empty);
 
             this.BuildAction($"--action {CommandEnumeration.ApplyOptionDependence} --state actualFiniteStateListTestBad -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
             this.stateCommand.ApplyOrRemoveStateDependency(false);
 
-            Assert.IsEmpty(this.Transactions);
+            Assert.That(this.Transactions, Is.Empty);
         }
 
         [Test]
@@ -94,19 +94,19 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.RemoveStateDependence} --state actualFiniteStateListTest -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?
                 .Parameter.Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => p.StateDependence == this.ActualPossibleFiniteStateList));
+                .All(p => p.StateDependence == this.ActualPossibleFiniteStateList), Is.True);
 
             this.stateCommand.ApplyOrRemoveStateDependency(true);
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.All(
                     t => t.UpdatedThing.All(
                         a => a.Value is Parameter p
                              && p.StateDependence is null
-                             && p.ParameterType.ShortName == parameterShortName)));
+                             && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
     }
 }

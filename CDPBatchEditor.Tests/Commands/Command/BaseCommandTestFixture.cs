@@ -68,6 +68,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
         private Person person;
         private SiteDirectory siteDirectory;
         private SiteReferenceDataLibrary siteReferenceDataLibrary;
+        private Mock<ICDPMessageBus> messageBus;
 
         private Uri uri;
 
@@ -187,11 +188,12 @@ namespace CDPBatchEditor.Tests.Commands.Command
         private void SetupData()
         {
             this.Transactions.Clear();
+            this.messageBus = new Mock<ICDPMessageBus>();
             this.SessionService = new Mock<ISessionService>();
             this.FilterService = new Mock<IFilterService>();
             this.Session = new Mock<ISession>();
             this.uri = new Uri(BaseUri);
-            this.Assembler = new Assembler(this.uri);
+            this.Assembler = new Assembler(this.uri, this.messageBus.Object);
             this.siteDirectory = new SiteDirectory(Guid.NewGuid(), this.Assembler.Cache, this.uri);
 
             this.SetupDomainPersonAndParticipant();

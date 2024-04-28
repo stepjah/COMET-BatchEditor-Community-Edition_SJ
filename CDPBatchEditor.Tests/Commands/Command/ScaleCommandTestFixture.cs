@@ -52,19 +52,19 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.SetScale} --scale {this.KilometerScale.ShortName} -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?
                 .Parameter.Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => p.Scale != this.KilometerScale));
+                .All(p => p.Scale != this.KilometerScale), Is.True);
 
             this.scaleCommand.AssignMeasurementScale();
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.All(
                     t => t.UpdatedThing.All(
                         a => a.Value is Parameter p
                              && p.Scale == this.KilometerScale
-                             && p.ParameterType.ShortName == parameterShortName)));
+                             && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
 
         [Test]
@@ -77,13 +77,13 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.scaleCommand.AssignMeasurementScale();
 
-            Assert.IsEmpty(this.Transactions);
+            Assert.That(this.Transactions, Is.Empty);
 
             this.BuildAction($"--action {CommandEnumeration.SetScale} --scale {this.KilometerScale.ShortName} -m TEST --element-definition {elementDefinitionShortName} --domain testDomain ");
 
             this.scaleCommand.AssignMeasurementScale();
 
-            Assert.IsEmpty(this.Transactions);
+            Assert.That(this.Transactions, Is.Empty);
         }
 
         [Test]
@@ -94,14 +94,14 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.StandardizeDimensionsInMillimeter} -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?
                 .Parameter.Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => p.Scale != this.MillimeterScale));
+                .All(p => p.Scale != this.MillimeterScale), Is.True);
 
             this.scaleCommand.StandardizeDimensionsInMillimetre();
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.Any(
                     t => t.UpdatedThing.Any(
                              a => a.Value is Parameter p
@@ -109,7 +109,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
                                   && p.ParameterType.ShortName == parameterShortName) || t.UpdatedThing.Any(
                              a => a.Value is ParameterSubscription p
                                   && p.Scale == this.MillimeterScale
-                                  && p.ParameterType.ShortName == parameterShortName)));
+                                  && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
     }
 }

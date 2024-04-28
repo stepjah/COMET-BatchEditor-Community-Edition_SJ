@@ -51,22 +51,22 @@ namespace CDPBatchEditor.Tests.Commands.Command
             const string parameterUserFriendlyShortName = "testParameter3", elementDefinitionShortName = "testElementDefinition";
             this.BuildAction($"--action={CommandEnumeration.Subscribe} --parameter-switch REFERENCE -m TEST --parameters={parameterUserFriendlyShortName} --element-definition={elementDefinitionShortName} --domain=testDomain");
 
-            Assert.IsTrue(this.Parameter4.ParameterSubscription.All(
+            Assert.That(this.Parameter4.ParameterSubscription.All(
                 s => s.ValueSet.All(
-                    v => v.ValueSwitch == ParameterSwitchKind.MANUAL)));
+                    v => v.ValueSwitch == ParameterSwitchKind.MANUAL)), Is.True);
 
             this.subscriptionCommand.SetParameterSubscriptionsSwitch();
 
             var things = this.Transactions.SelectMany(t => t.UpdatedThing.Select(a => a.Value)).ToArray();
-            Assert.AreEqual(1, things.Length);
+            Assert.That(things.Length, Is.EqualTo(1));
             var valueSet = things.First() as ParameterSubscriptionValueSet;
             var parameter = valueSet?.GetContainerOfType<Parameter>();
 
-            Assert.IsNotNull(parameter);
-            Assert.IsTrue(parameter.ParameterType.ShortName == parameterUserFriendlyShortName);
+            Assert.That(parameter, Is.Not.Null);
+            Assert.That(parameter.ParameterType.ShortName == parameterUserFriendlyShortName, Is.True);
 
-            Assert.IsNotNull(valueSet);
-            Assert.AreEqual(ParameterSwitchKind.REFERENCE, valueSet.ValueSwitch);
+            Assert.That(valueSet, Is.Not.Null);
+            Assert.That(valueSet.ValueSwitch, Is.EqualTo(ParameterSwitchKind.REFERENCE));
         }
 
         [Test]
@@ -75,18 +75,18 @@ namespace CDPBatchEditor.Tests.Commands.Command
             const string parameterUserFriendlyShortName = "testParameter2", elementDefinitionShortName = "testElementDefinition", domain = "testDomain2";
             this.BuildAction($"--action={CommandEnumeration.Subscribe} -m TEST --parameters={parameterUserFriendlyShortName} --element-definition={elementDefinitionShortName} --domain={domain}");
 
-            Assert.IsFalse(this.Parameter2.ParameterSubscription.Any());
+            Assert.That(this.Parameter2.ParameterSubscription.Any(), Is.False);
 
             this.subscriptionCommand.Subscribe();
 
-            Assert.AreEqual(1, this.Transactions.First().UpdatedThing.Count);
-            Assert.AreEqual(1, this.Transactions.First().AddedThing.Count());
+            Assert.That(this.Transactions.First().UpdatedThing.Count, Is.EqualTo(1));
+            Assert.That(this.Transactions.First().AddedThing.Count(), Is.EqualTo(1));
 
-            Assert.IsTrue(this.Transactions.Any(t => t.AddedThing.Any(p => p is ParameterSubscription s && s.Owner == this.Domain2)));
+            Assert.That(this.Transactions.Any(t => t.AddedThing.Any(p => p is ParameterSubscription s && s.Owner == this.Domain2)), Is.True);
 
-            Assert.IsTrue(this.Transactions.Any(t => t.UpdatedThing.Any(u => u.Value is Parameter p
+            Assert.That(this.Transactions.Any(t => t.UpdatedThing.Any(u => u.Value is Parameter p
                                                                              && p.ParameterSubscription.Any(s => s.Owner.ShortName == domain)
-                                                                             && p.ParameterType.ShortName == parameterUserFriendlyShortName)));
+                                                                             && p.ParameterType.ShortName == parameterUserFriendlyShortName)), Is.True);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.subscriptionCommand.Subscribe();
 
-            Assert.IsEmpty(this.Transactions);
+            Assert.That(this.Transactions, Is.Empty);
 
             this.BuildAction($"--action={CommandEnumeration.Subscribe} -m TEST --element-definition={elementDefinitionShortName}");
 

@@ -56,9 +56,9 @@ namespace CDPBatchEditor.Tests
         {
             var summary = this.commandArguments.ToString();
             Console.WriteLine(summary);
-            Assert.IsNull(this.errors);
-            Assert.IsNotNull(summary);
-            Assert.IsNotEmpty(summary);
+            Assert.That(this.errors, Is.Null);
+            Assert.That(summary, Is.Not.Null);
+            Assert.That(summary, Is.Not.Empty);
         }
     }
 }

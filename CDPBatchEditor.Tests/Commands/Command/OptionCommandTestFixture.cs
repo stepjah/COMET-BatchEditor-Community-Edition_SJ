@@ -52,19 +52,19 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.ApplyOptionDependence} -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?.Parameter
                 .Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => !p.IsOptionDependent));
+                .All(p => !p.IsOptionDependent), Is.True);
 
             this.optionCommand.ApplyOrRemoveOptionDependency(false);
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.Any(
                     t => t.UpdatedThing.Any(
                         a => a.Value is Parameter p
                              && p.IsOptionDependent
-                             && p.ParameterType.ShortName == parameterShortName)));
+                             && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
 
         [Test]
@@ -75,19 +75,19 @@ namespace CDPBatchEditor.Tests.Commands.Command
 
             this.BuildAction($"--action {CommandEnumeration.RemoveOptionDependence} -m TEST --parameters {parameterShortName} --element-definition {elementDefinitionShortName} --domain testDomain ");
 
-            Assert.IsTrue(this.Iteration.Element
+            Assert.That(this.Iteration.Element
                 .FirstOrDefault(e => e.ShortName == elementDefinitionShortName)?.Parameter
                 .Where(p => p.ParameterType.ShortName == parameterShortName)
-                .All(p => p.IsOptionDependent));
+                .All(p => p.IsOptionDependent), Is.True);
 
             this.optionCommand.ApplyOrRemoveOptionDependency(true);
 
-            Assert.IsTrue(
+            Assert.That(
                 this.Transactions.Any(
                     t => t.UpdatedThing.Any(
                         a => a.Value is Parameter p
                              && !p.IsOptionDependent
-                             && p.ParameterType.ShortName == parameterShortName)));
+                             && p.ParameterType.ShortName == parameterShortName)), Is.True);
         }
     }
 }

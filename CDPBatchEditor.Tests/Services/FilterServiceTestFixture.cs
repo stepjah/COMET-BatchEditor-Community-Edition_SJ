@@ -46,10 +46,11 @@ namespace CDPBatchEditor.Tests.Services
         [SetUp]
         public void Setup()
         {
+            this.messageBus = new Mock<ICDPMessageBus>();
             this.commandArguments = new Mock<ICommandArguments>();
 
             this.uri = new Uri(BaseUri);
-            this.assembler = new Assembler(this.uri);
+            this.assembler = new Assembler(this.uri, this.messageBus.Object);
 
             this.iteration = new Iteration(Guid.NewGuid(), this.assembler.Cache, this.uri);
 
@@ -100,6 +101,7 @@ namespace CDPBatchEditor.Tests.Services
 
         private const string BaseUri = "http://test.com";
         private Mock<ICommandArguments> commandArguments;
+        private Mock<ICDPMessageBus> messageBus;
         private FilterService filterService;
         private Uri uri;
         private Assembler assembler;
@@ -118,34 +120,34 @@ namespace CDPBatchEditor.Tests.Services
         {
             var dummyElement = new ElementDefinition() { ShortName = "null" };
             this.filterService.ProcessFilters(this.iteration, this.siteDirectory.Domain);
-            Assert.IsTrue(this.filterService.IsFilteredInOrFilterIsEmpty(this.elementDefinition));
+            Assert.That(this.filterService.IsFilteredInOrFilterIsEmpty(this.elementDefinition), Is.True);
 
-            Assert.IsFalse(this.filterService.IsFilteredInOrFilterIsEmpty(dummyElement));
+            Assert.That(this.filterService.IsFilteredInOrFilterIsEmpty(dummyElement), Is.False);
             this.filterService.FilteredElementDefinitions.Clear();
-            Assert.IsTrue(this.filterService.IsFilteredInOrFilterIsEmpty(dummyElement));
+            Assert.That(this.filterService.IsFilteredInOrFilterIsEmpty(dummyElement), Is.True);
         }
 
         [Test]
         public void VerifyIsParameterSpecifiedOrAny()
         {
-            Assert.IsFalse(this.filterService.IsParameterSpecifiedOrAny(new Parameter() { ParameterType = new BooleanParameterType() { ShortName = "returnFalse" } }));
+            Assert.That(this.filterService.IsParameterSpecifiedOrAny(new Parameter() { ParameterType = new BooleanParameterType() { ShortName = "returnFalse" } }), Is.False);
 
-            Assert.IsTrue(this.filterService.IsParameterSpecifiedOrAny(this.parameter));
+            Assert.That(this.filterService.IsParameterSpecifiedOrAny(this.parameter), Is.True);
 
             this.commandArguments.Setup(x => x.SelectedParameters).Returns(new List<string>());
 
-            Assert.IsEmpty(this.commandArguments.Object.SelectedParameters);
-            Assert.IsTrue(this.filterService.IsParameterSpecifiedOrAny(this.parameter));
+            Assert.That(this.commandArguments.Object.SelectedParameters, Is.Empty);
+            Assert.That(this.filterService.IsParameterSpecifiedOrAny(this.parameter), Is.True);
         }
 
         [Test]
         public void VerifyProcessFilters()
         {
-            Assert.IsEmpty(this.filterService.FilteredElementDefinitions);
-            Assert.IsEmpty(this.filterService.IncludedOwners);
+            Assert.That(this.filterService.FilteredElementDefinitions, Is.Empty);
+            Assert.That(this.filterService.IncludedOwners, Is.Empty);
             this.filterService.ProcessFilters(this.iteration, this.siteDirectory.Domain);
-            Assert.IsNotEmpty(this.filterService.FilteredElementDefinitions);
-            Assert.AreEqual(2, this.filterService.IncludedOwners.Count);
+            Assert.That(this.filterService.FilteredElementDefinitions, Is.Not.Empty);
+            Assert.That(this.filterService.IncludedOwners.Count, Is.EqualTo(2));
         }
     }
 }

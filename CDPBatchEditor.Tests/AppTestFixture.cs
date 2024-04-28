@@ -52,7 +52,7 @@ namespace CDPBatchEditor.Tests
         {
             this.app.Run();
             this.commandDispatcher.Verify(x => x.Invoke(), Times.Once);
-            Assert.IsTrue(this.app.StopWatch.IsRunning);
+            Assert.That(this.app.StopWatch.IsRunning, Is.True);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace CDPBatchEditor.Tests
         {
             this.app.Stop();
             this.sessionService.Verify(x => x.CloseAndSave(), Times.Once);
-            Assert.IsFalse(this.app.StopWatch.IsRunning);
+            Assert.That(this.app.StopWatch.IsRunning, Is.False);
         }
     }
 }

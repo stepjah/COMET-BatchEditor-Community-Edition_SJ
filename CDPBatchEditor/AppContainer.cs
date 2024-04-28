@@ -36,6 +36,8 @@ namespace CDPBatchEditor
     using CDPBatchEditor.Services;
     using CDPBatchEditor.Services.Interfaces;
 
+    using CDP4Dal;
+
     /// <summary>
     /// Provides a <see cref="IContainer" />
     /// </summary>
@@ -68,6 +70,8 @@ namespace CDPBatchEditor
             containerBuilder.RegisterType<ScaleCommand>().As<IScaleCommand>();
             containerBuilder.RegisterType<OptionCommand>().As<IOptionCommand>();
             containerBuilder.RegisterType<ReportGenerator>().As<IReportGenerator>();
+            containerBuilder.RegisterType<CDPMessageBus>().As<ICDPMessageBus>().SingleInstance();
+
             Container = containerBuilder.Build();
         }
     }
