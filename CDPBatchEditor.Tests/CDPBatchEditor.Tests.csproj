@@ -6,9 +6,9 @@
         <LangVersion>latest</LangVersion>
         <RootNamespace>CDPBatchEditor.Tests</RootNamespace>
         <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski</Authors>
-        <Company>RHEA System S.A.</Company>
+        <Company>Starion Group S.A.</Company>
         <Description>CDP4-COMET Batch editor tool Tests</Description>
-        <Copyright>Copyright © RHEA System S.A.</Copyright>
+        <Copyright>Copyright © Starion Group S.A.</Copyright>
     </PropertyGroup>
 
     <ItemGroup>

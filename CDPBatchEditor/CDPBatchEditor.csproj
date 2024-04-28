@@ -21,8 +21,8 @@
     </PropertyGroup>
 
     <PropertyGroup Label="Copyright">
-        <Company>RHEA System S.A.</Company>
-        <Copyright>Copyright © RHEA System S.A.</Copyright>
+        <Company>Starion Group S.A.</Company>
+        <Copyright>Copyright © Starion Group S.A.</Copyright>
         <Authors>Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski</Authors>
         <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
         <RequireLicenseAcceptance>true</RequireLicenseAcceptance>

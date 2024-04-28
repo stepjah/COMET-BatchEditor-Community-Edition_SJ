@@ -243,8 +243,8 @@
 	<s:Boolean x:Key="/Default/CodeStyle/EditorConfig/EnableStyleCopSupport/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeStyle/EditorConfig/ShowEditorConfigStatusBarIndicator/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue"> --------------------------------------------------------------------------------------------------------------------&#xD;
- &lt;copyright file="$FILENAME$" company="RHEA System S.A."&gt;&#xD;
-    Copyright (c) 2015-$CURRENT_YEAR$ RHEA System S.A.&#xD;
+ &lt;copyright file="$FILENAME$" company="Starion Group S.A."&gt;&#xD;
+    Copyright (c) 2015-$CURRENT_YEAR$ Starion Group S.A.&#xD;
 &#xD;
     Author: Nathanael Smiechowski, Alex Vorobiev, Alexander van Delft, Kamil Wojnowski, Sam Gerené&#xD;
 &#xD;
