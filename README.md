@@ -54,3 +54,5 @@ The [Starion Group](https://www.stariongroup.eu) also provides the [COMET Web Se
 # Contributions
 
 Contributions to the code-base are welcome. However, before we can accept your contributions we ask any contributor to sign the Contributor License Agreement (CLA) and send this digitaly signed to s.gerene@stariongroup.eu. You can find the CLA's in the CLA folder.
+
+[Contribution guidelines for this project](.github/CONTRIBUTING.md)
